@@ -28,8 +28,6 @@
             border-bottom: 1px solid #e0e0e0;
             outline: 0;
 
-            font-size: 16px;
-            font-weight: 400;
             background: #fff;
         }
 
@@ -50,6 +48,8 @@
 
         #show {
             font-family: 'Noto Sans SC Sliced', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
             padding: 15px;
         }
     </style>
@@ -57,6 +57,7 @@
     <script>
         function updateText(el) {
             document.getElementById('show').innerText = el.value;
+            localStorage.text = el.value;
 
             // Auto grow height
             el.style.height = 'auto';
@@ -65,10 +66,12 @@
 
         function updateSize(el) {
             document.getElementById('show').style.fontSize = el.value + 'px';
+            localStorage.size = el.value;
         }
 
         function updateWeight(el) {
             document.getElementById('show').style.fontWeight = el.value;
+            localStorage.weight = el.value;
         }
     </script>
     <script src="https://fonts.gstatic.com/ea/timing/v1/mlfont.js" async></script>
@@ -87,5 +90,19 @@
     </select>
 </div>
 <div id="show">输入以预览</div>
+
+<script>
+    var text = document.getElementById('text');
+    text.innerText = localStorage.text || "输入以预览";
+    updateText(text);
+
+    var size = document.getElementById('size');
+    size.value = localStorage.size || "16";
+    updateSize(size);
+
+    var weight = document.getElementById('weight');
+    weight.querySelector('[value="' + (localStorage.weight || "400") + '"]').selected = true;
+    updateWeight(weight);
+</script>
 </body>
 </html>
