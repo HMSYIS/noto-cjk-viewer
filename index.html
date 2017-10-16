@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Noto CJK Sliced</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansscsliced.css">
+    <style>
+        * {
+            box-sizing: content-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+
+        #text {
+            display: block;
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+
+            border: 0;
+            border-bottom: 1px solid #e0e0e0;
+            outline: 0;
+
+            font-size: 16px;
+            font-weight: 400;
+            background: #fff;
+        }
+
+        #adjust {
+            height: 48px;
+            line-height: 48px;
+
+            border-bottom: 1px solid #ddd;
+            background: #fff;
+
+            text-align: center;
+        }
+
+        #size {
+            width: 60px;
+            margin-right: 10px;
+        }
+
+        #show {
+            font-family: 'Noto Sans SC Sliced', sans-serif;
+            padding: 15px;
+        }
+    </style>
+
+    <script>
+        function updateText(el) {
+            document.getElementById('show').innerText = el.value;
+
+            // Auto grow height
+            el.style.height = 'auto';
+            el.style.height = (el.scrollHeight - 30) + 'px';
+        }
+
+        function updateSize(el) {
+            document.getElementById('show').style.fontSize = el.value + 'px';
+        }
+
+        function updateWeight(el) {
+            document.getElementById('show').style.fontWeight = el.value;
+        }
+    </script>
+    <script src="https://fonts.gstatic.com/ea/timing/v1/mlfont.js" async></script>
+</head>
+<body>
+<textarea id="text" oninput="updateText(this);">输入以预览</textarea>
+<div id="adjust">
+    <span>大小 (px): </span>
+    <input id="size" type="number" oninput="updateSize(this);" value="16">
+
+    <span>字重: </span>
+    <select id="weight" onchange="updateWeight(this);">
+        <option value="300">300</option>
+        <option value="400" selected>400</option>
+        <option value="500">500</option>
+    </select>
+</div>
+<div id="show">输入以预览</div>
+</body>
+</html>
